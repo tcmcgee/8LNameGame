@@ -1,0 +1,41 @@
+// content.js
+var names = []
+var count = 0;
+$(".one-fourth > h3").map(function() {
+	names.push($(this).html());
+	$(this).html("");
+	$(this).append( 'Name:<input type="text" name="firstname" class="' + count + '">');
+	count++;
+});
+
+for (var i = 0; i < count; i++)
+{
+	$( "." + i ).change(function() {
+		var name = names[$(this).attr('class')]
+		if ($(this).val().toLowerCase() === name.toLowerCase())
+		{
+			$(this).css('border', '5px solid #0f0');
+		
+		}
+		else if (contains((name.toLowerCase().split(' ')), $(this).val().toLowerCase()))
+		{
+			$(this).val(names[$(this).attr('class')]);
+			$(this).css('border', '5px solid #00f');
+		}
+		else
+		{
+			$(this).val(names[$(this).attr('class')]);
+			$(this).css('border', '5px solid #f00');
+		}
+		$(this).prop('disabled', true);
+});
+}
+
+function contains(a, obj) {
+    for (var i = 0; i < a.length; i++) {
+        if (a[i] === obj) {
+            return true;
+        }
+    }
+    return false;
+}

@@ -1,0 +1,14 @@
+{
+  "manifest_version": 2,
+  "name": "8th Light Name Game",
+  "version": "0.1",
+  "content_scripts": [
+  {
+    "matches": [
+      "http://8thlight.com/team/", "https://8thlight.com/team/",
+      "http://www.8thlight.com/team/","http://www.8thlight.com/team/"
+    ],
+    "js": ["./extensions/jquery-2.2.1.min.js", "content.js"]
+  }
+]
+}
