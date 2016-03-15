@@ -2,12 +2,12 @@
 A simple extension to practice the names of the 8th Light Team
 
 # Set up
-*Clone the repository
-*Open Google Chrome
-*Navigate to chrome://extensions
-*Make Sure Developer Mode is checked in top right corner.
-*Click Load Unpacked Extension and Navigate to the directory you cloned this repository.
-*once loaded go to http://www.8thlight.com/team/
+* Clone the repository
+* Open Google Chrome
+* Navigate to chrome://extensions
+* Make Sure Developer Mode is checked in top right corner.
+* Click Load Unpacked Extension and Navigate to the directory you cloned this repository.
+* once loaded go to http://www.8thlight.com/team/
 
 # Screenshots
 <img src="https://i.gyazo.com/38fc315651544d3fd2dac40a5cd5290a.jpg">
