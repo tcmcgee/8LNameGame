@@ -2,13 +2,18 @@
   "manifest_version": 2,
   "name": "8th Light Name Game",
   "version": "0.1",
+  "author": "Tom McGee",
+  "browser_action": {
+        "default_icon": {"19": "/app/images/logo19.png"},
+        "default_popup": "/app/html/popup.html"
+    },
   "content_scripts": [
   {
     "matches": [
       "http://8thlight.com/team/", "https://8thlight.com/team/",
       "http://www.8thlight.com/team/","http://www.8thlight.com/team/"
     ],
-    "js": ["./extensions/jquery-2.2.1.min.js", "./lib/content.js"]
+    "js": ["./app/extensions/jquery-2.2.1.min.js", "./app/js/src/NameGame.js"]
   }
 ]
 }
