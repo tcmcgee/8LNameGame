@@ -1,6 +1,7 @@
-mework: jasmine2
+framework: jasmine2
 src_files:
-  - node_modules/jquery/dist/jquery.js
+  - app/extensions/jquery-2.2.1.min.js 
+  - node_modules/jasmine-jquery/lib/jasmine-jquery.js
   - app/js/src/*.js
   - app/js/spec/*Test.js
 launch_in_dev:
