@@ -36,7 +36,6 @@ for (var i = 0; i < count; i++)
 });
 }
 */
-
 function NameGame(){
 }
 NameGame.prototype.contains = function(a, obj) {
@@ -93,5 +92,3 @@ for (var i = 0; i < count; i++)
 var nameGame = new NameGame();
 
 nameGame.startGame();
-
-
