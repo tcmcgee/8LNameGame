@@ -50,7 +50,7 @@ NameGame.prototype.contains = function(a, obj) {
 }
 NameGame.prototype.startGame = function()
 {
-var names = []
+var names = []; 
 var count = 0;
 $(".one-fourth > h3").map(function() {
 	names.push($(this).html());

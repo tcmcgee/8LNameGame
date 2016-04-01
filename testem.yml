@@ -1,0 +1,7 @@
+mework: jasmine2
+src_files:
+  - node_modules/jquery/dist/jquery.js
+  - app/js/src/*.js
+  - app/js/spec/*Test.js
+launch_in_dev:
+  - Chrome

@@ -8,6 +8,6 @@ describe("Extenson", function(){
   it ("should be able to check if an array of strings contains a value", function(){
     var stringArray = ["Hello", "My", "Name", "Is", "Tom"]
 
-    expect(nameGame.contains(stringArray, "Tom")).toEqual(true);
+    expect(nameGame.contains(stringArray, ["Tom"])).toEqual(true);
   });
 });
