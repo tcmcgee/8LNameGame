@@ -10,4 +10,8 @@ describe("Extenson", function(){
 
     expect(nameGame.contains(stringArray, ["Tom"])).toEqual(true);
   });
+
+  it ("should be able to use jasmine-jquery", function(){
+    expect($('<div>some text</div>')).toHaveText('some text');
+  });
 });
