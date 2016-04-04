@@ -3,6 +3,6 @@ src_files:
   - app/extensions/jquery-2.2.1.min.js 
   - app/extensions/jasmine-jquery.js 
   - app/js/src/*.js
-  - app/js/spec/*Test.js
+  - app/js/spec/*Tests.js
 launch_in_dev:
   - Chrome
