@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/tcmcgee/8LNameGame.svg?branch=master)](https://travis-ci.org/tcmcgee/8LNameGame)
+
 # 8LNameGame
 A simple extension to practice the names of the 8th Light Team
 
