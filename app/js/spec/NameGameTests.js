@@ -27,7 +27,7 @@ describe("Extension", function(){
     expect(nameGame.contains(stringArray, ["Hello"])).toEqual(true);
 });
 
-it ("should accept é and e as the same character when comparing", function(){
+it ("should accept ä and a as the same character when comparing", function(){
    var stringArray = ["Hällo", "My", "Name", "Is", "Tom"]
 
     expect(nameGame.contains(stringArray, ["Hällo"])).toEqual(true);
