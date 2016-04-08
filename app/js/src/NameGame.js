@@ -11,18 +11,31 @@ NameGame.prototype.contains = function(a, obj) {
   return false;
 }
 
+NameGame.prototype.getName = function(employeeDiv){
+  return employeeDiv.html();
+}
+
+NameGame.prototype.removeName = function(employeeDiv){
+  employeeDiv.html("");
+}
+
+NameGame.prototype.addTextInput = function(employeeDiv, count){
+ employeeDiv.append("Name: <input type ='text' class='" + count + "'>");
+}
+
 NameGame.prototype.startGame = function() {
   var names = []; 
   var count = 0;
   $(".one-fourth > h3").map(function() {
-    names.push($(this).html());
-    $(this).html("");
-    $(this).append( 'Name:<input type="text" name="firstname" class="' + count + '">');
+    var employeeName = NameGame.prototype.getName($(this));
+    names.push(employeeName);
+    NameGame.prototype.removeName($(this));
+    NameGame.prototype.addTextInput($(this), count);
     count++;
   });
 
 
-  for (var i = 0; i < count; i++) {
+  for (var i = 0; i < names.length; i++) {
     $( "." + i ).change(function() {
       var currenti = i;
       var name = names[$(this).attr('class')]
