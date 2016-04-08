@@ -12,7 +12,9 @@ NameGame.prototype.contains = function(a, obj) {
 }
 
 NameGame.prototype.getName = function(employeeDiv){
-  return employeeDiv.html();
+  var name = employeeDiv.html();
+  name = name.replace(/é/g, "e");
+  return name;
 }
 
 NameGame.prototype.removeName = function(employeeDiv){

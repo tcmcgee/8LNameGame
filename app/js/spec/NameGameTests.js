@@ -3,7 +3,7 @@ describe("Extension", function(){
   var EmployeeDiv;
   beforeEach(function() { 
     nameGame = new NameGame();
-   EmployeeDiv = setFixtures('<h3>Taka Goto</h3>') 
+   EmployeeDiv = setFixtures('<h3>Taka Goto</h3>'); 
   });
    
   it ("should be able to check if an array of strings contains a value", function(){
@@ -18,6 +18,11 @@ describe("Extension", function(){
 
   it ("should be able to get the name from an EmployeeDiv", function(){
     expect(nameGame.getName(EmployeeDiv)).toHaveText('Taka Goto');
+  });
+  
+  it ("should change é to e when getting the name", function(){
+    specialCharEmployeeDiv = setFixtures('<h3>Tééél Térms</h3>');
+    expect(nameGame.getName(specialCharEmployeeDiv)).toHaveText("Teeel Terms");
   });
 
   it ("should be able to remove the Text from the name", function(){
