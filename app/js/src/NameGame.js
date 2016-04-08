@@ -3,8 +3,8 @@ function NameGame(){ }
 NameGame.prototype.contains = function(a, obj) {
   for (var j = 0; j < obj.length; j++) {
     for (var i = 0; i < a.length; i++) {
-     var name1 = a[i].replace(/é/g, 'e');
-     var name2 = obj[j].replace(/é/g, 'e');
+     var name1 = a[i].replace(/é/g, 'e').replace(/ä/g, 'a');
+     var name2 = obj[j].replace(/é/g, 'e').replace(/ä/g, 'a');
       if (name1  === name2) {
         return true;
       }
@@ -41,8 +41,9 @@ NameGame.prototype.startGame = function() {
   for (var i = 0; i < names.length; i++) {
     $( "." + i ).change(function() {
       var currenti = i;
-      var name = names[$(this).attr('class')]
-      if ($(this).val().toLowerCase() === name.toLowerCase()) 
+      var name = names[$(this).attr('class')].toLowerCase().replace(/é/g, 'e').replace(/ä/g, 'a');
+      var userInput = $(this).val().toLowerCase().replace(/é/g,'e').replace(/ä/g, 'a');
+      if (userInput === name) 
       {
           $(this).css('border', '5px solid #0f0');
       } 
