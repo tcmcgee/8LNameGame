@@ -20,10 +20,12 @@ describe("Extension", function(){
     expect(nameGame.getName(EmployeeDiv)).toHaveText('Taka Goto');
   });
   
-  it ("should change é to e when getting the name", function(){
-    specialCharEmployeeDiv = setFixtures('<h3>Tééél Térms</h3>');
-    expect(nameGame.getName(specialCharEmployeeDiv)).toHaveText("Teeel Terms");
-  });
+  it ("should accept é and e as the same character when comparing", function(){
+   var stringArray = ["Héllo", "My", "Name", "Is", "Tom"]
+
+    expect(nameGame.contains(stringArray, ["Héllo"])).toEqual(true);
+    expect(nameGame.contains(stringArray, ["Hello"])).toEqual(true);
+});
 
   it ("should be able to remove the Text from the name", function(){
     expect(nameGame.removeName(EmployeeDiv)).not.toHaveText('Taka Goto'); 

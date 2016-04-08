@@ -3,7 +3,9 @@ function NameGame(){ }
 NameGame.prototype.contains = function(a, obj) {
   for (var j = 0; j < obj.length; j++) {
     for (var i = 0; i < a.length; i++) {
-      if (a[i] === obj[j]) {
+     var name1 = a[i].replace(/é/g, 'e');
+     var name2 = obj[j].replace(/é/g, 'e');
+      if (name1  === name2) {
         return true;
       }
     }
@@ -13,7 +15,6 @@ NameGame.prototype.contains = function(a, obj) {
 
 NameGame.prototype.getName = function(employeeDiv){
   var name = employeeDiv.html();
-  name = name.replace(/é/g, "e");
   return name;
 }
 
@@ -41,15 +42,20 @@ NameGame.prototype.startGame = function() {
     $( "." + i ).change(function() {
       var currenti = i;
       var name = names[$(this).attr('class')]
-        if ($(this).val().toLowerCase() === name.toLowerCase()) {
+      if ($(this).val().toLowerCase() === name.toLowerCase()) 
+      {
           $(this).css('border', '5px solid #0f0');
-        } else if (NameGame.prototype.contains((name.toLowerCase().split(' ')), $(this).val().toLowerCase().split(' '))) {
+      } 
+      else if (NameGame.prototype.contains((name.toLowerCase().split(' ')), $(this).val().toLowerCase().split(' ')))
+      {
           $(this).val(names[$(this).attr('class')]);
           $(this).css('border', '5px solid #00f');
-        } else {
+      } 
+      else
+      {
           $(this).val(names[$(this).attr('class')]);
           $(this).css('border', '5px solid #f00');
-        }
+      }
 
       $(this).prop('disabled', true);
       nextIndex = currenti + 1;
