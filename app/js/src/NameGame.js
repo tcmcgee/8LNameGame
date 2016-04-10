@@ -45,6 +45,7 @@ NameGame.prototype.startGame = function() {
       var userInput = $(this).val().toLowerCase().replace(/é/g,'e').replace(/ä/g, 'a');
       if (userInput === name) 
       {
+          $(this).val(names[$(this).attr('class')]);
           $(this).css('border', '5px solid #0f0');
       } 
       else if (NameGame.prototype.contains((name.toLowerCase().split(' ')), $(this).val().toLowerCase().split(' ')))
