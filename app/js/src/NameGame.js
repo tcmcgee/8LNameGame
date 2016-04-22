@@ -35,6 +35,7 @@ NameGame.prototype.centerAndStyle = function(prependedBody){
   prependedBody.css('z-index','2');
   $('.scoreboard').css('background-color','#d3d3d3'); 
   $('.scoreboard').css('padding','20px');
+  prependedBody.css('top', $('.dark').height());
 
 }
 
@@ -42,8 +43,9 @@ NameGame.prototype.startGame = function() {
   var names = []; 
   var count = 0;
   var score = 0;
+  var numberCompleted = 0;
 
-  $('body').prepend("<div class='score'> <h3 class='scoreboard'>YO</h3> </div>");
+  $('body').prepend("<div class='score'> <h3 class='scoreboard'>Score</h3> </div>");
   var scoreBoard = $(".score"); 
   NameGame.prototype.centerAndStyle(scoreBoard); 
 
@@ -80,7 +82,8 @@ NameGame.prototype.startGame = function() {
       }
 
       $(this).prop('disabled', true);
-      $('.score .scoreboard').html(score + " / " + names.length + " | " + Math.round(score * 1000 / names.length)/10 + "%");
+      numberCompleted += 1;
+      $('.score .scoreboard').html(score + " / " + numberCompleted + " | " + Math.round(score * 1000 / numberCompleted)/10 + "%");
       nextIndex = currentIndex + 1;
       var current = parseInt($(this).attr('class'));
       next = $("." + (current + 1));
