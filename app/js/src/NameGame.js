@@ -26,9 +26,27 @@ NameGame.prototype.addTextInput = function(employeeDiv, count){
  employeeDiv.append("Name: <input type ='text' class='" + count + "'>");
 }
 
+NameGame.prototype.centerAndStyle = function(prependedBody){
+  $('.scoreboard').width('50%'); 
+  prependedBody.css("position","fixed");
+  prependedBody.css("text-align","center");
+  prependedBody.width('50%');
+  prependedBody.css('left','37.5%');
+  prependedBody.css('z-index','2');
+  $('.scoreboard').css('background-color','#d3d3d3'); 
+  $('.scoreboard').css('padding','20px');
+
+}
+
 NameGame.prototype.startGame = function() {
   var names = []; 
   var count = 0;
+  var score = 0;
+
+  $('body').prepend("<div class='score'> <h3 class='scoreboard'>YO</h3> </div>");
+  var scoreBoard = $(".score"); 
+  NameGame.prototype.centerAndStyle(scoreBoard); 
+
   $(".one-fourth > h3").map(function() {
     var employeeName = NameGame.prototype.getName($(this));
     names.push(employeeName);
@@ -40,16 +58,18 @@ NameGame.prototype.startGame = function() {
 
   for (var i = 0; i < names.length; i++) {
     $( "." + i ).change(function() {
-      var currenti = i;
+      var currentIndex = i;
       var name = names[$(this).attr('class')].toLowerCase().replace(/é/g, 'e').replace(/ä/g, 'a');
       var userInput = $(this).val().toLowerCase().replace(/é/g,'e').replace(/ä/g, 'a');
       if (userInput === name) 
       {
+          score += 1; 
           $(this).val(names[$(this).attr('class')]);
           $(this).css('border', '5px solid #0f0');
       } 
       else if (NameGame.prototype.contains((name.toLowerCase().split(' ')), $(this).val().toLowerCase().split(' ')))
       {
+          score += .5;
           $(this).val(names[$(this).attr('class')]);
           $(this).css('border', '5px solid #00f');
       } 
@@ -60,7 +80,8 @@ NameGame.prototype.startGame = function() {
       }
 
       $(this).prop('disabled', true);
-      nextIndex = currenti + 1;
+      $('.score .scoreboard').html(score + " / " + names.length + " | " + Math.round(score * 1000 / names.length)/10 + "%");
+      nextIndex = currentIndex + 1;
       var current = parseInt($(this).attr('class'));
       next = $("." + (current + 1));
       next.focus();
