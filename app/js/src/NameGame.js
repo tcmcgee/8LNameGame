@@ -26,6 +26,8 @@ NameGame.prototype.addTextInput = function(employeeDiv, count){
  employeeDiv.append("Name: <input type ='text' class='" + count + "'>");
 }
 
+
+
 NameGame.prototype.centerAndStyle = function(prependedBody){
   $('.scoreboard').width('50%'); 
   prependedBody.css("position","fixed");
@@ -42,12 +44,18 @@ NameGame.prototype.centerAndStyle = function(prependedBody){
 NameGame.prototype.startGame = function() {
   var names = []; 
   var count = 0;
+  var count2 = 0;
   var score = 0;
   var numberCompleted = 0;
 
   $('body').prepend("<div class='score'> <h3 class='scoreboard'>Score</h3> </div>");
   var scoreBoard = $(".score"); 
   NameGame.prototype.centerAndStyle(scoreBoard); 
+
+  $(".one-fourth").map(function(){
+    $(this).addClass("wholething" + count2);
+    count2++;
+  });
 
   $(".one-fourth > h3").map(function() {
     var employeeName = NameGame.prototype.getName($(this));
@@ -56,6 +64,7 @@ NameGame.prototype.startGame = function() {
     NameGame.prototype.addTextInput($(this), count);
     count++;
   });
+
 
 
   for (var i = 0; i < names.length; i++) {
@@ -86,9 +95,13 @@ NameGame.prototype.startGame = function() {
       $('.score .scoreboard').html(score + " / " + numberCompleted + " | " + Math.round(score * 1000 / numberCompleted)/10 + "%");
       nextIndex = currentIndex + 1;
       var current = parseInt($(this).attr('class'));
-      next = $("." + (current + 1));
-      next.focus();
     });
+  }
+  for (var i = 0; i < names.length; i++) {
+    var swapIndex = Math.floor(Math.random() * names.length);
+    var swappingRow = $(".wholething" + swapIndex).closest('.row');
+    $(".wholething" + swapIndex).appendTo($(".wholething" + i).closest('.row'));
+    $(".wholething" + i).appendTo(swappingRow);
   }
 }
 
