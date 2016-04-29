@@ -97,12 +97,14 @@ NameGame.prototype.startGame = function() {
       } 
       else if (NameGame.prototype.contains((name.toLowerCase().split(' ')), $(this).val().toLowerCase().split(' ')))
       {
+          console.log("You Entered: " + userInput + "\n The Correct Answer Was: " + name);
           score += .5;
           $(this).val(names[$(this).attr('class')]);
           $(this).css('border', '5px solid #00f');
       } 
       else
       {
+          console.log("You Entered: " + userInput + "\n The Correct Answer Was: " + name);
           $(this).val(names[$(this).attr('class')]);
           $(this).css('border', '5px solid #f00');
       }
