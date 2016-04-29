@@ -1,9 +1,10 @@
 describe("Extension", function(){
   var nameGame;
   var EmployeeDiv;
+  var employeesWithRows; 
   beforeEach(function() { 
     nameGame = new NameGame();
-   EmployeeDiv = setFixtures('<h3>Taka Goto</h3>'); 
+    EmployeeDiv = setFixtures('<h3>Taka Goto</h3>'); 
   });
    
   it ("should be able to check if an array of strings contains a value", function(){
@@ -51,8 +52,4 @@ it ("should accept ä and a as the same character when comparing", function(){
     nameGame.addTextInput(EmployeeDiv, 20);
     expect(EmployeeDiv[0].outerHTML).toHaveHtml('Name: <input type="text" class="20"></div>');
   });
-
-
-
-
 });

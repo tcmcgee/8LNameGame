@@ -26,6 +26,11 @@ NameGame.prototype.addTextInput = function(employeeDiv, count){
  employeeDiv.append("Name: <input type ='text' class='" + count + "'>");
 }
 
+NameGame.prototype.updateScoreboard = function(score, numberCompleted){
+  var scoreboardText = score + " / " + numberCompleted + " | " + Math.round(score * 1000 / numberCompleted)/10 + "%"
+  $('.score .scoreboard').html(scoreboardText);
+}
+
 
 
 NameGame.prototype.centerAndStyle = function(prependedBody){
@@ -41,21 +46,35 @@ NameGame.prototype.centerAndStyle = function(prependedBody){
 
 }
 
+NameGame.prototype.swapPeople = function(numberOfEmployees){
+  var count2 = 0;
+$(".one-fourth").map(function(){
+    $(this).addClass("wholething" + count2);
+    count2++;
+  });
+
+  for (var i = 0; i < numberOfEmployees; i++) {
+    var swapIndex = Math.floor(Math.random() * numberOfEmployees);
+    var swappingRow = $(".wholething" + swapIndex).closest('.row');
+    $(".wholething" + swapIndex).appendTo($(".wholething" + i).closest('.row'));
+    $(".wholething" + i).appendTo(swappingRow);
+  }
+}
+
 NameGame.prototype.startGame = function() {
   var names = []; 
+  var numberOfEmployees = $('.team-photo').length;
   var count = 0;
-  var count2 = 0;
   var score = 0;
   var numberCompleted = 0;
+
+
 
   $('body').prepend("<div class='score'> <h3 class='scoreboard'>Score</h3> </div>");
   var scoreBoard = $(".score"); 
   NameGame.prototype.centerAndStyle(scoreBoard); 
+  NameGame.prototype.swapPeople(numberOfEmployees);
 
-  $(".one-fourth").map(function(){
-    $(this).addClass("wholething" + count2);
-    count2++;
-  });
 
   $(".one-fourth > h3").map(function() {
     var employeeName = NameGame.prototype.getName($(this));
@@ -64,8 +83,6 @@ NameGame.prototype.startGame = function() {
     NameGame.prototype.addTextInput($(this), count);
     count++;
   });
-
-
 
   for (var i = 0; i < names.length; i++) {
     $( "." + i ).change(function() {
@@ -92,11 +109,10 @@ NameGame.prototype.startGame = function() {
 
       $(this).prop('disabled', true);
       numberCompleted += 1;
-      $('.score .scoreboard').html(score + " / " + numberCompleted + " | " + Math.round(score * 1000 / numberCompleted)/10 + "%");
-      nextIndex = currentIndex + 1;
-      var current = parseInt($(this).attr('class'));
+      NameGame.prototype.updateScoreboard(score, numberCompleted)
     });
   }
+
   for (var i = 0; i < names.length; i++) {
     var swapIndex = Math.floor(Math.random() * names.length);
     var swappingRow = $(".wholething" + swapIndex).closest('.row');
