@@ -3,7 +3,7 @@ describe("Extension", function(){
   var EmployeeDiv;
   var employeesWithRows; 
   beforeEach(function() { 
-    nameGame = new NameGame();
+    nameGame = new NameGame(true);
     EmployeeDiv = setFixtures('<h3>Taka Goto</h3>'); 
   });
    
@@ -11,10 +11,6 @@ describe("Extension", function(){
     var stringArray = ["Hello", "My", "Name", "Is", "Tom"]
 
     expect(nameGame.contains(stringArray, ["Tom"])).toEqual(true);
-  });
-
-  it ("should be able to use jasmine-jquery", function(){
-    expect($('<div>some text</div>')).toHaveText('some text');
   });
 
   it ("should be able to get the name from an EmployeeDiv", function(){
@@ -52,4 +48,22 @@ it ("should accept ä and a as the same character when comparing", function(){
     nameGame.addTextInput(EmployeeDiv, 20);
     expect(EmployeeDiv[0].outerHTML).toHaveHtml('Name: <input type="text" class="20"></div>');
   });
+
+  it ("shuffles the inputs", function() {
+    var shuffleSpy = spyOn(nameGame, "shuffle");
+
+    nameGame.startGame();
+
+    expect(shuffleSpy).toHaveBeenCalled();
+  });
+
+  it ("does not shuffle the input if scramble is false", function() {
+   var nameGame = new NameGame("false");
+   var shuffleSpy = spyOn(nameGame, "shuffle");
+
+   nameGame.startGame();
+
+   expect(shuffleSpy).not.toHaveBeenCalled();
+  });
+
 });

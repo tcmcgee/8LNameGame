@@ -1,4 +1,6 @@
-function NameGame(){ }
+function NameGame(scramble){
+  this.scramble = scramble;
+}
 
 NameGame.prototype.contains = function(a, obj) {
   for (var j = 0; j < obj.length; j++) {
@@ -12,6 +14,7 @@ NameGame.prototype.contains = function(a, obj) {
   }
   return false;
 }
+
 
 NameGame.prototype.getName = function(employeeDiv){
   var name = employeeDiv.html();
@@ -31,8 +34,6 @@ NameGame.prototype.updateScoreboard = function(score, numberCompleted){
   $('.score .scoreboard').html(scoreboardText);
 }
 
-
-
 NameGame.prototype.centerAndStyle = function(prependedBody){
   $('.scoreboard').width('50%'); 
   prependedBody.css("position","fixed");
@@ -46,15 +47,15 @@ NameGame.prototype.centerAndStyle = function(prependedBody){
 
 }
 
-NameGame.prototype.swapPeople = function(numberOfEmployees){
-  var count2 = 0;
+NameGame.prototype.shuffle = function(){
+  var count = 0;
 $(".one-fourth").map(function(){
-    $(this).addClass("wholething" + count2);
-    count2++;
+    $(this).addClass("wholething" + count);
+    count++;
   });
 
-  for (var i = 0; i < numberOfEmployees; i++) {
-    var swapIndex = Math.floor(Math.random() * numberOfEmployees);
+  for (var i = 0; i < count; i++) {
+    var swapIndex = Math.floor(Math.random() * count);
     var swappingRow = $(".wholething" + swapIndex).closest('.row');
     $(".wholething" + swapIndex).appendTo($(".wholething" + i).closest('.row'));
     $(".wholething" + i).appendTo(swappingRow);
@@ -63,7 +64,6 @@ $(".one-fourth").map(function(){
 
 NameGame.prototype.startGame = function() {
   var names = []; 
-  var numberOfEmployees = $('.team-photo').length;
   var count = 0;
   var score = 0;
   var numberCompleted = 0;
@@ -73,7 +73,9 @@ NameGame.prototype.startGame = function() {
   $('body').prepend("<div class='score'> <h3 class='scoreboard'>Score</h3> </div>");
   var scoreBoard = $(".score"); 
   NameGame.prototype.centerAndStyle(scoreBoard); 
-  NameGame.prototype.swapPeople(numberOfEmployees);
+  if(this.scramble === true) {
+    this.shuffle();
+  }
 
 
   $(".one-fourth > h3").map(function() {
@@ -114,15 +116,4 @@ NameGame.prototype.startGame = function() {
       NameGame.prototype.updateScoreboard(score, numberCompleted)
     });
   }
-
-  for (var i = 0; i < names.length; i++) {
-    var swapIndex = Math.floor(Math.random() * names.length);
-    var swappingRow = $(".wholething" + swapIndex).closest('.row');
-    $(".wholething" + swapIndex).appendTo($(".wholething" + i).closest('.row'));
-    $(".wholething" + i).appendTo(swappingRow);
-  }
 }
-
-var nameGame = new NameGame();
-
-nameGame.startGame();
