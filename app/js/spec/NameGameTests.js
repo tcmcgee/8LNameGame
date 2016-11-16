@@ -3,7 +3,7 @@ describe("Extension", function(){
   var EmployeeDiv;
   var employeesWithRows; 
   beforeEach(function() { 
-    nameGame = new NameGame(true);
+    nameGame = new NameGame(true, true);
     EmployeeDiv = setFixtures('<h3>Taka Goto</h3>'); 
   });
    
@@ -58,12 +58,30 @@ it ("should accept ä and a as the same character when comparing", function(){
   });
 
   it ("does not shuffle the input if scramble is false", function() {
-   var nameGame = new NameGame("false");
+   var nameGame = new NameGame(false, false);
    var shuffleSpy = spyOn(nameGame, "shuffle");
 
    nameGame.startGame();
 
    expect(shuffleSpy).not.toHaveBeenCalled();
   });
+
+  it ("shows the scoreboard", function() {
+    var scoreboardSpy = spyOn(nameGame, "addScoreboard");
+
+    nameGame.startGame();
+
+    expect(scoreboardSpy).toHaveBeenCalled();
+  });
+
+  it ("does not show the scoreboard if scoreboard is false", function() {
+   var nameGame = new NameGame(true, false);
+   var scoreboardSpy = spyOn(nameGame, "addScoreboard");
+
+   nameGame.startGame();
+
+   expect(scoreboardSpy).not.toHaveBeenCalled();
+  });
+
 
 });

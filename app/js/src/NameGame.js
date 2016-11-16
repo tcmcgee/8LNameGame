@@ -1,5 +1,6 @@
-function NameGame(scramble){
+function NameGame(scramble, scoreboard){
   this.scramble = scramble;
+  this.scoreboard = scoreboard;
 }
 
 NameGame.prototype.contains = function(a, obj) {
@@ -49,7 +50,7 @@ NameGame.prototype.centerAndStyle = function(prependedBody){
 
 NameGame.prototype.shuffle = function(){
   var count = 0;
-$(".one-fourth").map(function(){
+  $(".one-fourth").map(function(){
     $(this).addClass("wholething" + count);
     count++;
   });
@@ -62,6 +63,13 @@ $(".one-fourth").map(function(){
   }
 }
 
+NameGame.prototype.addScoreboard = function() {
+
+  $('body').prepend("<div class='score'> <h3 class='scoreboard'>Score</h3> </div>");
+  var scoreBoard = $(".score"); 
+  NameGame.prototype.centerAndStyle(scoreBoard); 
+}
+
 NameGame.prototype.startGame = function() {
   var names = []; 
   var count = 0;
@@ -69,10 +77,10 @@ NameGame.prototype.startGame = function() {
   var numberCompleted = 0;
 
 
-
-  $('body').prepend("<div class='score'> <h3 class='scoreboard'>Score</h3> </div>");
-  var scoreBoard = $(".score"); 
-  NameGame.prototype.centerAndStyle(scoreBoard); 
+  if (this.scoreboard === true) {
+    this.addScoreboard();
+  }
+  
   if(this.scramble === true) {
     this.shuffle();
   }
