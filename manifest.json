@@ -14,9 +14,11 @@
   {
     "matches": [
       "http://8thlight.com/team/", "https://8thlight.com/team/",
-      "http://www.8thlight.com/team/","http://www.8thlight.com/team/"
+      "http://www.8thlight.com/team/","http://www.8thlight.com/team/",
+      "http://8thlight.com/locations/*", "https://8thlight.com/locations/*",
+      "http://www.8thlight.com/locations/*","http://www.8thlight.com/locations/*"
     ],
     "js": ["./app/extensions/jquery-2.2.1.min.js", "./app/js/src/NameGame.js", "./app/js/src/Main.js"]
   }
-]
+  ]
 }
