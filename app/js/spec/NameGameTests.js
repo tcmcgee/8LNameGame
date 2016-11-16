@@ -1,9 +1,9 @@
 describe("Extension", function(){
   var nameGame;
   var EmployeeDiv;
-  var employeesWithRows; 
-  beforeEach(function() { 
-    nameGame = new NameGame(true, true);
+  var employeesWithRows;
+  beforeEach(function() {
+    nameGame = new NameGame(true, true, true);
     EmployeeDiv = setFixtures('<h3>Taka Goto</h3>');
   });
 
@@ -32,7 +32,7 @@ it ("should accept ä and a as the same character when comparing", function(){
 });
 
   it ("should be able to remove the Text from the name", function(){
-    expect(nameGame.removeName(EmployeeDiv)).not.toHaveText('Taka Goto'); 
+    expect(nameGame.removeName(EmployeeDiv)).not.toHaveText('Taka Goto');
   });
 
   it ("should be able to add a text input to the Employee Div with a class as the given count", function(){
@@ -58,7 +58,8 @@ it ("should accept ä and a as the same character when comparing", function(){
   });
 
   it ("does not shuffle the input if scramble is false", function() {
-   var nameGame = new NameGame(false, false);
+    var scramble = false;
+   var nameGame = new NameGame(true, false, false);
    var shuffleSpy = spyOn(nameGame, "shuffle");
 
    nameGame.startGame();
@@ -75,7 +76,7 @@ it ("should accept ä and a as the same character when comparing", function(){
   });
 
   it ("does not show the scoreboard if scoreboard is false", function() {
-   var nameGame = new NameGame(true, false);
+   var nameGame = new NameGame(true, true, false);
    var scoreboardSpy = spyOn(nameGame, "addScoreboard");
 
    nameGame.startGame();
@@ -83,5 +84,22 @@ it ("should accept ä and a as the same character when comparing", function(){
    expect(scoreboardSpy).not.toHaveBeenCalled();
   });
 
+  it ("Replaces the names with text boxes if enabled is true", function() {
+   var nameGame = new NameGame(true, true, false);
+   var replaceNameSpy = spyOn(nameGame, "replaceNamesWithInputs").and.returnValue(["Taka Goto", "Some Other Name"]);
+
+   nameGame.startGame();
+
+   expect(replaceNameSpy).toHaveBeenCalled();
+  });
+
+  it ("Does not replace the names with text boxes if enabled is false", function() {
+   var nameGame = new NameGame(false, true, false);
+   var replaceNameSpy = spyOn(nameGame, "replaceNamesWithInputs").and.returnValue(["Taka Goto", "Some Other Name"]);
+
+   nameGame.startGame();
+
+   expect(replaceNameSpy).not.toHaveBeenCalled();
+  });
 
 });
