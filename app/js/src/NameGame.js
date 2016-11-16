@@ -1,4 +1,5 @@
-function NameGame(scramble, scoreboard){
+function NameGame(enabled, scramble, scoreboard){
+  this.enabled = enabled;
   this.scramble = scramble;
   this.scoreboard = scoreboard;
 }
@@ -16,7 +17,6 @@ NameGame.prototype.contains = function(a, obj) {
   return false;
 }
 
-
 NameGame.prototype.getName = function(employeeDiv){
   var name = employeeDiv.html();
   return name;
@@ -24,10 +24,6 @@ NameGame.prototype.getName = function(employeeDiv){
 
 NameGame.prototype.removeName = function(employeeDiv){
   employeeDiv.html("");
-}
-
-NameGame.prototype.addTextInput = function(employeeDiv, count){
- employeeDiv.append("Name: <input type ='text' class='" + count + "'>");
 }
 
 NameGame.prototype.updateScoreboard = function(score, numberCompleted){
@@ -48,6 +44,10 @@ NameGame.prototype.centerAndStyle = function(prependedBody){
 
 }
 
+NameGame.prototype.addTextInput = function(employeeDiv, count) {
+ employeeDiv.append("Name: <input type ='text' class='" + count + "'>");
+}
+
 NameGame.prototype.shuffle = function(){
   var count = 0;
   $(".one-fourth").map(function(){
@@ -64,10 +64,22 @@ NameGame.prototype.shuffle = function(){
 }
 
 NameGame.prototype.addScoreboard = function() {
-
   $('body').prepend("<div class='score'> <h3 class='scoreboard'>Score</h3> </div>");
   var scoreBoard = $(".score"); 
   NameGame.prototype.centerAndStyle(scoreBoard); 
+}
+
+NameGame.prototype.replaceNamesWithInputs = function() {
+    count = 0;
+    names = [];
+    $(".one-fourth > h3").map(function() {
+      var employeeName = NameGame.prototype.getName($(this));
+      names.push(employeeName);
+      NameGame.prototype.removeName($(this));
+      NameGame.prototype.addTextInput($(this), count);
+      count++;
+    });
+    return names || [];
 }
 
 NameGame.prototype.startGame = function() {
@@ -85,14 +97,10 @@ NameGame.prototype.startGame = function() {
     this.shuffle();
   }
 
-
-  $(".one-fourth > h3").map(function() {
-    var employeeName = NameGame.prototype.getName($(this));
-    names.push(employeeName);
-    NameGame.prototype.removeName($(this));
-    NameGame.prototype.addTextInput($(this), count);
-    count++;
-  });
+  if (this.enabled === true) {
+    count = 0;
+    names = this.replaceNamesWithInputs();
+  }
 
   for (var i = 0; i < names.length; i++) {
     $( "." + i ).change(function() {

@@ -1,4 +1,12 @@
-chrome.storage.sync.get(['scramble', 'scoreboard'], function(data) {
+chrome.storage.sync.get(['enabled', 'scramble', 'scoreboard'], function(data) {
+
+  var enabled = data.enabled;
+  var checkboxEnabled = $("[name=enabled]");
+  checkboxEnabled.attr("checked", enabled);
+  checkboxEnabled.change(function(e){
+    chrome.storage.sync.set({ 'enabled': $(e.target).is(":checked") }, function(){});
+  });
+
   var scramble = data.scramble;
   var checkboxScramble = $("[name=scramble]");
   checkboxScramble.attr("checked", scramble);
