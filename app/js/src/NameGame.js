@@ -50,16 +50,16 @@ NameGame.prototype.centerAndStyle = function(prependedBody){
 
 NameGame.prototype.shuffle = function(){
   var count = 0;
-  $(".one-fourth").map(function(){
+  $(".team_member").map(function(){
     $(this).addClass("wholething" + count);
     count++;
   });
 
   for (var i = 0; i < count; i++) {
     var swapIndex = Math.floor(Math.random() * count);
-    var swappingRow = $(".wholething" + swapIndex).closest('.row');
-    $(".wholething" + swapIndex).appendTo($(".wholething" + i).closest('.row'));
-    $(".wholething" + i).appendTo(swappingRow);
+    var swappingRow = $(".wholething" + swapIndex);
+    $(".wholething" + swapIndex).insertAfter($(".wholething" + i));
+    $(".wholething" + i).insertAfter(swappingRow);
   }
 }
 
@@ -76,7 +76,6 @@ NameGame.prototype.startGame = function() {
   var score = 0;
   var numberCompleted = 0;
 
-
   if (this.scoreboard === true) {
     this.addScoreboard();
   }
@@ -85,8 +84,7 @@ NameGame.prototype.startGame = function() {
     this.shuffle();
   }
 
-
-  $(".one-fourth > h3").map(function() {
+  $(".team_member > h3").map(function() {
     var employeeName = NameGame.prototype.getName($(this));
     names.push(employeeName);
     NameGame.prototype.removeName($(this));
@@ -95,7 +93,8 @@ NameGame.prototype.startGame = function() {
   });
 
   for (var i = 0; i < names.length; i++) {
-    $( "." + i ).change(function() {
+    $( "." + i ).change(function(e) {
+      console.log(e);
       var currentIndex = i;
       var name = names[$(this).attr('class')].toLowerCase().replace(/é/g, 'e').replace(/ä/g, 'a');
       var userInput = $(this).val().toLowerCase().replace(/é/g,'e').replace(/ä/g, 'a');
