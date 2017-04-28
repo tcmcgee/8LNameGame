@@ -4,9 +4,9 @@ describe("Extension", function(){
   var employeesWithRows; 
   beforeEach(function() { 
     nameGame = new NameGame(true, true);
-    EmployeeDiv = setFixtures('<h3>Taka Goto</h3>'); 
+    EmployeeDiv = setFixtures('<h3>Taka Goto</h3>');
   });
-   
+
   it ("should be able to check if an array of strings contains a value", function(){
     var stringArray = ["Hello", "My", "Name", "Is", "Tom"]
 
@@ -16,7 +16,7 @@ describe("Extension", function(){
   it ("should be able to get the name from an EmployeeDiv", function(){
     expect(nameGame.getName(EmployeeDiv)).toHaveText('Taka Goto');
   });
-  
+
   it ("should accept é and e as the same character when comparing", function(){
    var stringArray = ["Héllo", "My", "Name", "Is", "Tom"]
 
