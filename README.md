@@ -9,7 +9,9 @@ A simple extension to practice the names of the 8th Light Team
 * Navigate to chrome://extensions
 * Make Sure Developer Mode is checked in top right corner.
 * Click Load Unpacked Extension and Navigate to the directory you cloned this repository.
-* once loaded go to http://www.8thlight.com/team/
+* Once loaded, go to http://www.8thlight.com/team/ or any of the location-specific pages.
+* To toggle the enabling of this extension, display of the scoreboard, or scrambling the pictures out of alphabetical order, click the extension icon (the 8th Light logo) and toggle the relevant checkboxes.
+
 
 # Screenshots
 <img src="https://i.gyazo.com/38fc315651544d3fd2dac40a5cd5290a.jpg">
